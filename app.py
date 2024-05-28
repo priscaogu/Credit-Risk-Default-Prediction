@@ -1,6 +1,7 @@
 import pickle
 import pandas as pd
 import streamlit as st
+from sklearn.ensemble import RandomForestClassifier
 
 # Function to load the model
 def load_model():

@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
 
 
 def load_model():
@@ -48,7 +49,10 @@ person_default_ord = person_default(person_default_input)
 # Function to prepare data input
 def prepare_data(person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income):
     data = np.array([person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income])
-    return data
+    scaler = StandardScaler()
+    # Fit the scaler on the training data and transform both training and test data
+    data_scaled = scaler.fit_transform(data)
+    return data_scaled
 
 
 # Function to preprocess input data and make a prediction

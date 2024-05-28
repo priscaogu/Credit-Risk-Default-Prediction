@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
 def load_model():
-    rf_model = joblib.load("cr2_model.joblib")
+    rf_model = joblib.load("cr_model.joblib")
     return rf_model
 
 # Streamlit app

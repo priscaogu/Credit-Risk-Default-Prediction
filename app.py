@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
 def load_model():
-    rf_model = pickle.load(open("cr_model.pkt", "rb"))
+    rf_model = pickle.load(open("cr2_model.pkt", "rb"))
     return rf_model
 
 # Streamlit app

@@ -37,7 +37,7 @@ st.header("Credit Default Prediction App")
 st.subheader("Input your data")
 
 # Create input fields for each required feature
-person_default_input = st.selectbox("Previous Default", ['No', 'Yes'])
+previous_default_input = st.selectbox("Previous Default", ['No', 'Yes'])
 home_ownership_input = st.selectbox("Home Ownership", ["RENT", "OWN", "MORTGAGE", "OTHER"])
 person_income = st.number_input("Person Income", min_value=0)
 loan_amnt = st.number_input("Loan Amount", min_value=0)
@@ -54,7 +54,7 @@ data_input = {
     'loan_percent_income': loan_percent_income
 }
 
-if text_input is not None:
+if data_input is not None:
     if st.button("Analyse"):
         result = creditRisk_prediction(data_input)
         st.subheader("Result:")

@@ -20,14 +20,14 @@ def home_ownership(x):
         return 3
 
 # Function to convert person default to numerical value
-def person_default(x):
+def previous_default(x):
     return 0 if x == 'No' else 1
 
 # Function to preprocess input data and make a prediction
 def creditRisk_prediction(data):
     rf = load_model()
     # Create a DataFrame with the correct column order
-    data_prep = pd.DataFrame([data], columns=['person_default', 'home_ownership', 'person_income', 'loan_amnt', 'loan_int_rate', 'loan_percent_income'])
+    data_prep = pd.DataFrame([data], columns=['previous_default', 'home_ownership', 'person_income', 'loan_amnt', 'loan_int_rate', 'loan_percent_income'])
     prediction = rf.predict_proba(data_prep)[:, 1]
     class_name = "Default" if prediction <= 0.85 else "Non-Default"
     return class_name
@@ -46,7 +46,7 @@ loan_percent_income = st.number_input("Loan Percent Income", min_value=0.0, form
 
 # Prepare the data input in the required order
 data_input = {
-    'person_default': person_default(person_default_input),
+    'previous_default': previous_default(previous_default_input),
     'home_ownership': home_ownership(home_ownership_input),
     'person_income': person_income,
     'loan_amnt': loan_amnt,

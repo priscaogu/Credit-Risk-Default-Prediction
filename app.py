@@ -42,8 +42,8 @@ def classify_previousdefault(x):
 
 
 #Ordinal value arrangement 
-classify_home = home_ownership(home_ownership_input)
-classify_previousdefault = person_default(person_default_input)
+home_ownership = classify_home(home_ownership_input)
+person_default = classify_previousdefault(person_default_input)
 
 
 

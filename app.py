@@ -54,7 +54,7 @@ def creditRisk_prediction(data):
         return "Prediction failed."
 
 # Prepare the data input
-data_input = np.array([person_default, home_ownership, person_income, loan_amnt, loan_int_rate, loan_percent_income] , ndmin=2)
+data_input = np.array([previous_default, home_ownership, person_income, loan_amnt, loan_int_rate, loan_percent_income] , ndmin=2)
     
 if data_input is not None:
     if st.button("Analyse"):

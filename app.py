@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
+
 
 
 def load_model():
@@ -25,7 +25,7 @@ loan_int_rate = st.number_input("Loan Interest Rate", min_value=0.0, max_value=2
 loan_percent_income = st.number_input("Loan Percent Income", min_value=0.0, max_value=1.0, format="%.2f")
 
 # Function to convert home ownership to numerical value
-def home_ownership(x):
+def classify_home(x):
     if x == 'OWN':
         return 0
     elif x == 'MORTGAGE':
@@ -37,22 +37,14 @@ def home_ownership(x):
 
 
 # Function to convert person default to numerical value
-def person_default(x):
+def classify_previousdefault(x):
     return 1 if x == 'Yes' else 0
 
 
 #Ordinal value arrangement 
-home_ownership_ord = home_ownership(home_ownership_input)
-person_default_ord = person_default(person_default_input)
+classify_home = home_ownership(home_ownership_input)
+classify_previousdefault = person_default(person_default_input)
 
-
-# Function to prepare data input
-def prepare_data(person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income):
-    data = np.array([person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income])
-    scaler = StandardScaler()
-    # Fit the scaler on the training data and transform both training and test data
-    data_scaled = scaler.fit_transform(data)
-    return data_scaled
 
 
 # Function to preprocess input data and make a prediction
@@ -70,7 +62,9 @@ def creditRisk_prediction(data):
         return "Prediction failed."
 
 # Prepare the data input
-data_input = prepare_data(person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income)
+# Function to prepare data input
+data_input = np.array([person_default, home_ownership, person_income, loan_amnt, loan_int_rate, loan_percent_income] , ndmin=2)
+    
 
 if data_input is not None:
     if st.button("Analyse"):

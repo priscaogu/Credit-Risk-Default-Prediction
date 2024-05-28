@@ -5,8 +5,8 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 def load_model():
-    rf = pickle.load(open("cr_model.pkt", "rb"))
-    return rf
+    rf_model = pickle.load(open("cr_model.pkt", "rb"))
+    return rf_model
 
 
 # Streamlit app
@@ -46,21 +46,14 @@ person_default_ord = person_default(person_default_input)
 
 # Function to prepare data input
 def prepare_data(person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income):
-    data = {
-        'person_default': person_default_ord,
-        'home_ownership': home_ownership_ord,
-        'person_income': person_income,
-        'loan_amnt': loan_amnt,
-        'loan_int_rate': loan_int_rate,
-        'loan_percent_income': loan_percent_income
-    }
+    data = np.array([person_default_ord, home_ownership_ord, person_income, loan_amnt, loan_int_rate, loan_percent_income])
     return data
 
 
 # Function to preprocess input data and make a prediction
 def creditRisk_prediction(data):
-    rf = load_model()
-    if rf is None:
+    rf_model = load_model()
+    if rf_model is None:
         return "Model loading failed."
 
     try:

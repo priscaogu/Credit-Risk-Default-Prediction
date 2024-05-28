@@ -46,7 +46,7 @@ def creditRisk_prediction(data):
     if rf_model is None:
         return "Model loading failed."
     try:
-        prediction = rf.predict(data)
+        prediction = rf_model.predict(data)
         class_name = "Default" if prediction == 1 else "Non-Default"
         return class_name
     except Exception as e:

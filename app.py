@@ -14,14 +14,14 @@ st.subheader("Input your data")
 #data_input = st.data_input("Enter your data")
 
 # Create input fields for each required feature
-previous_default_input = st.selectbox("Previous Default", ['No', 'Yes'])
-home_ownership_input = st.selectbox("Home Ownership", ["RENT", "OWN", "MORTGAGE", "OTHER"])
+previous_default = st.number_input("Previous Default (0:No, 1:Yes)", min_value=0)
+home_ownership = st.number_input("Home Ownership", min_value=0)
 person_income = st.number_input("Person Income", min_value=0)
 loan_amnt = st.number_input("Loan Amount", min_value=0)
 loan_int_rate = st.number_input("Loan Interest Rate", min_value=0.0, max_value=20.0, format="%.2f")
 loan_percent_income = st.number_input("Loan Percent Income", min_value=0.0, max_value=1.0, format="%.2f")
 
-# Function to convert home ownership to numerical value
+"""# Function to convert home ownership to numerical value
 def classify_home(x):
     if x == 'OWN':
         return 0
@@ -38,7 +38,7 @@ def classify_previousdefault(x):
 
 #Ordinal value arrangement 
 home_ownership = classify_home(home_ownership_input)
-previous_default = classify_previousdefault(previous_default_input)
+previous_default = classify_previousdefault(previous_default_input)"""
 
 # Function to preprocess input data and make a prediction
 def creditRisk_prediction(data):
@@ -46,7 +46,7 @@ def creditRisk_prediction(data):
     if rf_model is None:
         return "Model loading failed."
     try:
-        prediction = rf_model.predict(data)
+        prediction = rf_model.predict(data_input)
         class_name = "Default" if prediction == 1 else "Non-Default"
         return class_name
     except Exception as e:

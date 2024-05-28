@@ -1,11 +1,11 @@
-import pickle
+import joblib
 import pandas as pd
 import streamlit as st
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
 def load_model():
-    rf_model = pickle.load(open("cr2_model.pkt", "rb"))
+    rf_model = joblib.load("cr2_model.joblib")
     return rf_model
 
 # Streamlit app
@@ -14,7 +14,7 @@ st.subheader("Input your data")
 #data_input = st.data_input("Enter your data")
 
 # Create input fields for each required feature
-previous_default = st.number_input("Previous Default (0:No, 1:Yes)", min_value=0)
+previous_default = st.number_input("Previous Default", min_value=0)
 home_ownership = st.number_input("Home Ownership", min_value=0)
 person_income = st.number_input("Person Income", min_value=0)
 loan_amnt = st.number_input("Loan Amount", min_value=0)

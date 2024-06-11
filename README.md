@@ -14,6 +14,9 @@ Financial institutions need a reliable and efficient method to calculate the Pro
 ## Steps to Successs
 
 •	Data Cleaning: Ensured data consistency by handling missing values and outliers.
+
 •	Feature Selection and Feature Engineering: Converted categorical variables into numerical formats using ordinal encoding and one-hot encoding. Utilized ANOVA, Chi-Squared tests, and correlation matrices to assess the relationships between predictor variables and the target variable.
+
 •	Model Building & Validation: Trained predictive models using Random Forest and Gradient Boosting methods to classify loan defaults. Evaluated model performance using metrics such as F1 Score, Accuracy, ROC Curve, and Calibration Curve to ensure robust and reliable predictions. Achieved an accuracy rate of 0.90 and 0.94 respectively.
+
 •	Reporting: Developed a strategy table to assess model thresholds, providing insights into acceptance rates, bad rates, estimated values, and the number of accepted loans at various cutoff points
